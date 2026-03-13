@@ -26,7 +26,7 @@ def process_image(img_boards, img_gray, coord_list, col: str = None, converter: 
                                                                     "board_finder\\top_left_black.png"])
     else:
         # Call the method to extract pieces
-        cord = extract_pieces.get_pieces(converter, img_boards, img_gray)
+        cord = extract_pieces.get_pieces(img_boards, board_minx, board_miny)
     coord_list.extend(cord)
 
 
@@ -143,25 +143,14 @@ def cap_screen(col: str) -> str:
 
     # Start the thread
     boord_thread.start()
-    b_thread.start()
-    k_thread.start()
-    n_thread.start()
-    p_thread.start()
-    r_thread.start()
-    q_thread.start()
 
     # get board coords
     boord_thread.join()
     board_minx = board_coord[0][0]
     board_miny = board_coord[0][1]
 
-    # Wait for all the threads to join
-    b_thread.join()
-    k_thread.join()
-    n_thread.join()
-    p_thread.join()
-    r_thread.join()
-    q_thread.join()
+    # classify squares with ML model
+    coords = extract_pieces.get_pieces(img_board, board_minx, board_miny)
 
     # Turn cords into fen
     fen = get_fen(coords, board_minx, board_miny, col) + ' ' + col + ' - - 0 1'
