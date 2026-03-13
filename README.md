@@ -48,16 +48,3 @@ Highlighted squares show where the model has detected pieces on both the white a
 - `README.md` – project overview and documentation.
 
 ---
-
-## ▶️ Getting started
-
-1. **Create a virtual environment** (recommended) and install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. **Prepare the dataset** under the `dataset/` directory (one subfolder per class as listed in `CLASS_NAMES` in `src/chess_piece_classifier.py`).
-3. **Train or retrain the model**:
-   ```bash
-   python src/chess_piece_classifier.py
-   ```
-4. **Use the trained model** (`src/chess_piece_classifier.keras`) to classify new square crops as part of your larger ChessBot pipeline.
